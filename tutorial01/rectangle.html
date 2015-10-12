@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8"/>
+    <title>HTML 5</title>
+</head>
+<body>
+<canvas id="canvas" width="400" height="400"
+        style="border:1px solid #c3c3c3;">
+    Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+<script>
+
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    // green fill.
+    context.fillStyle = "#00ff00";
+    // draws and fills the rectangle
+    // position: 0,0
+    // width: 150, height: 100 pixels.
+    context.fillRect(0,0, 150, 100);
+
+</script>
+</body>
+</html> 
