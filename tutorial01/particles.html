@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Particles</title>
+    <style>
+        /*
+        Allow the canvas to fill the entire document window.
+        */
+        html,body{
+            padding:0;
+            margin: 0;
+            overflow:hidden;
+        }
+    </style>
+</head>
+
+
+<!-- When the page is done loading, we draw the particles.-->
+<body onload="drawParticles('maincanvas')">
+
+<script>
+    /**
+     * This function draws a random number of circles on the canvas.
+     * It first re-sizes the canvas to fill the screen.
+     * @param canvasId (required) ID of the canvas element
+     * @param count (optional) how many circles to draw.
+     */
+    function drawParticles(canvasId,count){
+
+        var canvas = document.getElementById(canvasId);
+        var context = canvas.getContext('2d');
+
+        // there should be this many
+        var randomCount = count || Math.random()*1000;
+        var color;
+        var radius;
+        var x,y;
+
+        // first, let's adjust the canvas' size to fill the screen
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        for(var i=0;i<randomCount;i++){
+
+
+            // random color one-liner, taken from http://llllll.li/randomColor/
+            // 16777215 = 16^6 - 1
+            // the resulting string would be something like #7o81a5
+            // each digit is a hexadecimal number (16)
+            // six digits --> 16^6
+            // since we start with 0 --> 16^6-1
+            // voilà.
+            color = '#' + Math.floor(Math.random()*16777215).toString(16);
+
+            // random radius between 0 and 50 pixels.
+            radius = Math.random()*50;
+
+            // random position.
+            // -radius*2 ensures that the right and bottom edges remain untouched
+            // +radius ensures that the left and top edge remain untouched
+            x = Math.random()*(canvas.width-radius*2)+radius;
+            y = Math.random()*(canvas.height-radius*2)+radius;
+
+            // this is necessary to reset the path on the canvas.
+            context.beginPath();
+
+            // set the fill color with the random color.
+            context.fillStyle = color;
+            // construct the path.
+            // 0 --> start angle,
+            // 2*Math.PI --> end angle. --> 2*PI one full circle.
+            // see here: http://www.w3schools.com/tags/canvas_arc.asp
+            context.arc(x,y,radius,0,2*Math.PI);
+            // fill the context at the given path.
+            context.fill();
+        }
+    }
+</script>
+
+<canvas id="maincanvas"></canvas>
+
+</body>
+</html>
