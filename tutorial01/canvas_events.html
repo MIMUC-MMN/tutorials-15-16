@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Interaction with Canvas</title>
+</head>
+<body>
+
+<canvas id="maincanvas"
+        width="800" height="600"
+        style="border: 1px solid gray"></canvas>
+<div>
+    <button onclick="clearCanvas()">Clear</button>
+</div>
+<script>
+    /**
+     * Draws a circle of size 0-50px (random)
+     * on the events.target (assuming it is a canvas)
+     * @param event should be a canvas element.
+     */
+    function drawCircle(event){
+        // assumption:
+        // the event only occurs on the canvas
+        var canvas = event.target;
+        var context = canvas.getContext('2d');
+        // the canvas is probably not located
+        // in the top left-corner of the
+        // window, so we need to consider its offset.
+        var x = event.clientX - canvas.offsetLeft;
+        var y = event.clientY - canvas.offsetTop;
+
+        var radius = Math.random()*50;
+        // start a new circle
+        context.beginPath();
+        // create the circle path
+        context.arc(x,y,radius,0,2*Math.PI);
+        // fill the circle
+        context.fill();
+    }
+
+    /**
+     * resets the canvas
+     */
+    function clearCanvas(){
+        var canvas = document.getElementById('maincanvas');
+        canvas.getContext('2d')
+                .clearRect(0,0,canvas.width,canvas.height);
+    }
+
+    // attach drawCircle as attribute;
+    document.getElementById('maincanvas').onclick = drawCircle;
+</script>
+
+</body>
+</html>
