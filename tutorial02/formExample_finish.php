@@ -11,13 +11,13 @@
 </head>
 <body>
 <?php
-if(isset($_GET['color'])) {
-    echo "<p>Your favorite color is " . $_GET['color'] . "</p>";
+if(isset($_POST['color'])) {
+    echo "<p>Your favorite color is " . $_POST['color'] . "</p>";
 }
 else{
     ?>
     <p>Please pick your favorite color:</p>
-    <form action="formExample_finish.php" method="get">
+    <form action="formExample_finish.php" method="post">
         <label>
             <input  type="radio" name="color"
                     value="red" />
