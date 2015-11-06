@@ -58,3 +58,12 @@ mysqli_fetch_array($results);
 mysqli_fetch_array($results, MYSQLI_NUM);
 // this is a little more convenient, because this will return an associative array.
 mysqli_fetch_array($results, MYSQLI_ASSOC);
+
+/*
+ * if you are sure that you won't need the
+ * connection anymore, it is recommendable
+ * to close it right away.
+ * This frees up memory that the server
+ * can use for something else (many other clients)
+ */
+mysqli_close($c);
