@@ -1,18 +1,15 @@
 <?php
 
-$host = "localhost";
-
-$user = '<INSERT_USER_HERE>';
-
-$password = "<INSERT_DB_PASSWORD_HERE>";
-
-$db = "<INSERT_DB_NAME_HERE>";
+// use connectionInfo.php as a template and
+// create connectionInfo.private.php to avoid checking your
+// credentials into the git repository.
+include_once('connectionInfo.private.php');
 
 // $c is then a mysqli object representing the connection to the database.
 $c = new mysqli($host,$user,$password,$db);
 
 // note: there is a question mark at the end (wildcard)
-$query = "SELECT lastName FROM people WHERE firstName=?";
+$query = "SELECT firstName,lastName FROM people WHERE firstName=?";
 
 
 // prepare the statement.
@@ -28,8 +25,13 @@ $statement->bind_param("s", $name);
 // now, execute the query
 $statement->execute();
 
-// the result needs to be bound to a variable
-$statement->bind_result($lastNameResults);
+// the results need to be bound to variables.
+// make sure to match the order in the query!
+$statement->bind_result($firstName,$lastName);
 
 // fetch the actual values;
-$statement->fetch();
+while($statement->fetch()){
+    echo "$firstName $lastName";
+    echo "<br />";
+}
+

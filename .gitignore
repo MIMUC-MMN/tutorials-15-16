@@ -1,3 +1,6 @@
+*.private.*
+*.private.php
+
 ### Yeoman template
 node_modules/
 bower_components/
