@@ -12,9 +12,9 @@ $user = '<INSERT_USER_HERE>';
 
 $password = "<INSERT_DB_PASSWORD_HERE>";
 
-
+$database = "myDB";
 // $c is then a mysqli object representing the connection to the database.
-$c = new mysqli("host","user","password","db");
+$c = new mysqli($host,$user,$password,$database);
 
 $query = "SELECT * FROM mytable";
 
