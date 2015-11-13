@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loading JSON data</title>
+</head>
+<body>
+<div id="response" style="white-space: pre"></div>
+<script>
+    function prettyJSONString(jsonObj){return JSON.stringify(jsonObj,null,4);}
+    var request = new XMLHttpRequest();
+    request.open('GET','../php/jsonResponse.php');
+    request.onreadystatechange = function(){
+        var jsonResponse;
+        var outputDiv = document.getElementById('response');
+        if(request.readyState != 4) return;
+        jsonResponse = JSON.parse(request.responseText);
+        outputDiv.innerText = prettyJSONString(jsonResponse);
+    };
+    request.send();
+</script>
+</body>
+</html>
