@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Loading JSON data</title>
-</head>
-<body>
+<head><meta charset="UTF-8">    <title>Loading JSON data</title>
+</head><body>
 <div id="response" style="white-space: pre"></div>
 <script>
-    function prettyJSONString(jsonObj){return JSON.stringify(jsonObj,null,4);}
+    function prettyJSONString(jsonObj){
+        return JSON.stringify(jsonObj,null,4);
+    }
     var request = new XMLHttpRequest();
     request.open('GET','../php/jsonResponse.php');
     request.onreadystatechange = function(){
@@ -19,5 +18,4 @@
     };
     request.send();
 </script>
-</body>
-</html>
+</body></html>

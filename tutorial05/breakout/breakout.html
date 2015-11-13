@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modify Me With jQuery!</title>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <style>
+        #container{     width:80%; height:100%; margin: auto;}
+        .left,.right{   padding: 1em; width: 40%; }
+        .left{  float: left; }
+        .right{ float: right; }
+        .clear{ clear: both; }
+        .rick{
+            background-color: #C2185B;
+            padding: 1em 2em;
+            color: #fff;
+            font-weight: bold;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            border: none;
+            -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+            position: relative;
+            cursor: pointer;}
+        .rick:hover{
+            background-color:#E91E63;
+            -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.7);
+            -moz-box-shadow: 0 0 7px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 7px rgba(0, 0, 0, 0.7);
+        }
+        li{ padding: 0; margin: 1em 0; }
+        h1{ text-align: center }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <h1>A jQuery Exercise</h1>
+    <div class="left">
+        <h2 id="lyricsHeading">Here's where the lyrics should appear:</h2>
+        <div id="lyrics"></div>
+    </div>
+    <div class="right">
+        <h2>Generate your lyrics:</h2>
+        <ul class="rickRoll">
+            <li><button>Gonna</button></li>
+            <li><button>You</button></li>
+            <li><button>Give</button></li>
+            <li><button>Go</button></li>
+            <li><button>Never</button></li>
+            <li><button>Let</button></li>
+            <li><button>Up</button></li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+    <h2>Here's some space for AJAX results: </h2>
+    <div class="results"></div>
+</div>
+
+
+<script>
+    // TODO your code goes here.
+</script>
+</body>
+</html>
