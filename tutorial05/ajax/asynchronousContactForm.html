@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Asynchronous Contact Form</title>
+    <style>label{ width: 100px;display: block;}</style>
+</head><body>
+
+<form id="contactForm">
+    <label>First Name:
+    <input type="text" name="firstName" /></label>
+    <label>Last Name:<input type="text" name="lastName" /></label>
+    <label>Message:
+        <textarea name="message" cols="50"></textarea></label><br />
+    <input type="submit" value="Submit!"/>
+</form>
+<div id="response" style="display: none;"></div>
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script>
+    $(document).ready(function(){
+        // anonymous submit handler
+        $('#contactForm').submit(function(event){
+            // make an object from our form data.
+            var self = $(this);
+            var data = self.serialize();
+
+            // this prevents the page from refreshing
+            event.preventDefault();
+
+            $.ajax({
+                url: '../php/contactFormHandler.php',
+                type: 'POST',
+                data: data,
+                success: function(response){
+                    var output = $("#response");
+                    response = (response instanceof String) ?
+                            $.parseJSON(response) : response;
+                    self.fadeOut(function(){
+                        output.html('<p>Thanks for your message, '
+                                +response.info.firstName+'!</p>');
+                        output.fadeIn();
+                    });
+                }
+            });
+        });
+    });
+</script>
+</body></html>

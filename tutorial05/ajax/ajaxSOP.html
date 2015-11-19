@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>jQuery SOP Problem</title>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script>
+        var promise = $.ajax({
+            url: "http://php.cip.ifi.lmu.de/~stockinger/php/mmn1415/json.php",
+            type: "GET",
+            data: {
+                test1 : "Hello",
+                test2 : "Tobi"
+            },
+            dataType: "text"
+        });
+        promise.error(function(error){console.error(error)})
+                .done(function(data){ console.log(data);});
+    </script>
+</head>
+<body>
+
+</body>
+</html>
