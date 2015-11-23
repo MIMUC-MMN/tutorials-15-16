@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Let Example</title>
+</head>
+<body>
+<script>
+    // if you want to use 'let' you need to declare the javascript as "strict" doing this:
+    'use strict';
+    function letDemo(){
+        var one = 0;
+        for(let two = 0; two<10;two++){
+            var three = two;
+            console.log(one);
+        }
+        console.log(three); // 9
+        console.log(two); // undefined;
+    }
+    letDemo();
+</script>
+</body>
+</html>
