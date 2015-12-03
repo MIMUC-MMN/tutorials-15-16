@@ -8,6 +8,9 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+// include the mmn module
+var mmn = require('./routes/mmn');
+
 var app = express();
 
 // view engine setup
@@ -24,6 +27,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+
+// define the route:
+app.use('/mmn',mmn);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
