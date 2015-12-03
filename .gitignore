@@ -1,6 +1,8 @@
 *.private.*
 *.private.php
 
+
+
 ### Yeoman template
 node_modules/
 bower_components/
@@ -611,3 +613,4 @@ local.properties
 /vendors/*
 
 # Created by .ignore support plugin (hsz.mobi)
+!tutorial07/examples/MMNExpressApp/bin

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Objects in JS</title>
+</head>
+<body>
+<script>
+
+    function Rabbit(){
+        this.adjective = 'fat';
+        this.whatAmI = function(){
+            console.log('I am a ' + this.adjective + ' Rabbit!');
+        };
+        console.log(this.adjective + ' rabbit is alive');
+    }
+
+    var rabbit = new Rabbit();
+    // rabbit = Rabbit(); // <-- try this and see what happens.
+    rabbit.whatAmI();
+    rabbit.adjective = 'cool';
+    rabbit.whatAmI();
+
+
+    // ***************************************************************************************************************
+    function Dog(adjective){
+        this.adjective = adjective;
+        this.whatAmI = function(){
+            console.log('I am a ' + this.adjective + ' Dog!');
+        }
+    }
+    var dooge = new Dog('hot');
+    dooge.whatAmI();
+
+    var wuff = new Dog('loud');
+    wuff.whatAmI();
+
+    // ***************************************************************************************************************
+    var horse = {
+        adjective : 'crazy',
+        whatAmI : function(){
+            console.log("I am a " + this.adjective + " Horse!");
+        }
+    };
+    var horse2 = horse; // this is just a reference, not a copy!
+    horse.whatAmI();
+    horse.adjective = 'super weird';
+    horse2.whatAmI(); // horse2 is also super weird!
+
+
+
+</script>
+</body>
+</html>

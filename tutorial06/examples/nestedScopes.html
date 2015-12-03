@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nested Scopes</title>
+</head>
+<body>
+<script>
+    function nest(){
+        function getOne(){
+            return 1;
+        }
+        function getTwo(){
+            return 2;
+        }
+        console.log(getOne() + getTwo());
+    }
+    nest(); // 3
+    console.log(getOne() + getTwo()); // undefined!
+</script>
+</body>
+</html>
