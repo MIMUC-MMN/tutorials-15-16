@@ -1,0 +1,50 @@
+[
+    {
+        "user_id" : "abc123",
+        "name" : "Caroline",
+        "age" : 55,
+        "status" : "A"
+    },
+    {
+        "user_id" : "bam939",
+        "age": 32,
+        "name" : "Ibrahim",
+        "status" : "A"
+    },
+    {
+        "user_id" : "cdi928",
+        "age" : 45,
+        "name" : "Bastian",
+        "status" : "B"
+    },
+    {
+        "user_id" : "jde413",
+        "age" : 63,
+        "name" : "Martha",
+        "status" : "B"
+    },
+    {
+        "user_id" : "bsn823",
+        "age" : 28,
+        "name" : "Jamie",
+        "status" : "B"
+    },
+    {
+        "user_id" : "dkw392",
+        "age" : 45,
+        "name" : "George",
+        "status" : "A"
+    },
+    {
+        "user_id" : "ide239",
+        "age" : 24,
+        "name" : "Jessica",
+        "status" : "B"
+    },
+    {
+        "user_id" : "kei911",
+        "age" : 22,
+        "name" : "Sarah",
+        "status" : "A"
+    }
+]
