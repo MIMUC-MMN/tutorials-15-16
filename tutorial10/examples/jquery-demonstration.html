@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery: party pooper</title>
+</head>
+<body>
+<div>First</div>
+<div>Second</div>
+<div>Third</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+
+    // here, the argument passed to $() is a actually a string.
+    // so a naive interpretation about how jQuery will handle this is:
+    // 1. parse the string
+    // 2. store the CDATA (Hi!)
+    // 3. create a DOM-node
+    // 4. Set the CDATA
+    // 5. find the correct div - this is a jQuery custom selector,
+    // 6. append the new node to all of the nodes in the result set.
+    // worth discussing: is it quite a lot for a seemingly small operation?
+
+    $('<div>Hi!</div>').appendTo('div:eq(2)');
+
+    // _similar_ (not identical) solution with vanilla js:
+    /*var div = document.createElement('div');
+    var secondExistingDiv = document.querySelectorAll('div').item(2);
+    div.text = 'Hi!';
+    secondExistingDiv.appendChild(div);*/
+
+</script>
+
+</body>
+</html>
