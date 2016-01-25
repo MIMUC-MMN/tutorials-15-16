@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Artists with dom-repeat helper element</title>
+    <link rel="import" href="../bower_components/webcomponentsjs/webcomponents-lite.min.js">
+    <link rel="import" href="../bower_components/polymer/polymer.html">
+    <link rel="import" href="my-artist.html">
+</head>
+<body>
+<template is="dom-bind" id="app">
+    <h1>Artists</h1>
+    <div class="artists">
+        <template is="dom-repeat"
+                  items="{{artists}}"
+                  as="artist">
+            <my-artist
+                    name="{{artist.name}}"
+                    img="{{artist.img}}"></my-artist>
+        </template>
+    </div>
+</template>
+<script>
+    var app = document.querySelector('#app');
+    app.artists = [
+        {name: 'EODM', img: 'eodm.png'},
+        {name: 'Ramones', img: 'ramones.png'},
+        {name: 'Kinks', img: 'kinks.png'}
+    ]
+</script>
+</body>
+</html>

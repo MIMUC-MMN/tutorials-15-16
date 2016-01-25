@@ -1,0 +1,49 @@
+<link rel="import"
+      href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+
+<dom-module id="spotify-searchbox">
+    <template>
+        <iron-ajax
+                auto
+                url="https://api.spotify.com/v1/search"
+                params="{{ajaxParams}}"
+                last-response="{{spotifyResponse}}"
+                on-response="handleResponse"
+                debounce-duration="300"></iron-ajax>
+        <paper-input value="{{query}}" label="Enter artist name"></paper-input>
+    </template>
+    <script>
+        Polymer({
+            is : 'spotify-searchbox',
+            properties : {
+                artists : {
+                    type : Array,
+                    notify: true
+                },
+                query : {
+                    type : String,
+                    observer : 'updateAjaxParameters',
+                    notify : true
+                },
+
+            },
+            updateAjaxParameters : function(query){
+                if(query.length){
+                    this.ajaxParams = {
+                        q : query,
+                        type : 'artist'
+                    }
+                }
+                else{
+                    this.artists = [];
+                }
+            },
+            handleResponse : function(){
+                this.artists = this.spotifyResponse.artists.items;
+            }
+        })
+    </script>
+</dom-module>

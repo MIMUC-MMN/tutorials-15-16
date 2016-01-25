@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic AJAX Example</title>
+
+    <link rel="import"
+          href="../bower_components/webcomponentsjs/webcomponents-lite.min.js">
+    <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+
+</head>
+<body>
+<template is="dom-bind">
+    <iron-ajax
+            auto
+            url="artists.json"
+            last-response="{{artists}}"
+    ></iron-ajax>
+    <template is="dom-repeat"
+              items="{{artists}}">
+        <div>
+            <img src="{{item.img}}"
+                 width="100">
+            <span>{{item.name}}</span>
+        </div>
+    </template>
+</template>
+</body>
+</html>
