@@ -5,6 +5,23 @@
 
 <dom-module id="my-artist">
     <template>
+        <style>
+            :host{
+                font-family: 'Comic Sans MS',sans-serif;
+                display: inline-block;
+                height: 300px;
+            }
+            iron-image{
+                display: inline-block;
+                width: 100%;
+                height: 100%;
+            }
+            span{
+                display:block;
+                font-size: 20px;
+                text-align: center;
+            }
+        </style>
         <iron-image src="{{img}}" sizing="contain"></iron-image>
         <span>{{name}}</span>
     </template>
