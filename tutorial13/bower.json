@@ -7,7 +7,6 @@
   "private": true,
   "dependencies": {
     "iron-elements": "PolymerElements/iron-elements#^1.0.7",
-    "paper-elements": "PolymerElements/paper-elements#^1.0.7",
-    "google-map": "GoogleWebComponents/google-map#~1.1.7"
+    "paper-elements": "PolymerElements/paper-elements#^1.0.7"
   }
 }
