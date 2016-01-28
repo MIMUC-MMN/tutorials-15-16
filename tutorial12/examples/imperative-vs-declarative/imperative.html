@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Imperative Example</title>
+</head>
+<body>
+<input id="name" placeholder="enter your name" />
+<button id="imperative" disabled>OK</button>
+<div>Your name: <span id="output"></span></div>
+<script>
+
+    var userName = '';
+
+    function updateUI(){
+        document.getElementById('output').innerHTML = userName;
+        document.getElementById('imperative').disabled = userName.length == 0;
+    }
+
+    document.getElementById('name').addEventListener('input',function(){
+        userName = this.value;
+        updateUI();
+    });
+
+</script>
+
+</body>
+</html>

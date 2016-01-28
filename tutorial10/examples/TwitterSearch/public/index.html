@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Notes App</title>
+    <link rel="stylesheet" href="stylesheets/style.css"/>
+</head>
+<body>
+<header class="header">
+    <div class="notification"></div>
+
+    <div class='brand'>Tweets</div>
+    <div class="clear"></div>
+
+</header>
+<div id="container">
+    <section>
+        <form id="searchForm" class="card">
+            <input type="text" placeholder="Search Term">
+            <input type="submit" value="Search"></button>
+        </form>
+    </section>
+    <section class='cards'>
+        <div class="flexParent tweetsContainer">
+            <div class="clear"></div>
+        </div>
+    </section>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        /**
+         *
+         * The UI Handler encapsulates functionality to modify the User Interface / DOM.
+         *
+         */
+        function UIHandler() {
+            // the notification is a <div> in the header and can be used to display feedback
+            var notification = $('.notification');
+
+            // this is where the notes go.
+            var tweetsContainer = $('.tweetsContainer');
+
+
+            /**
+             * display arbitrary messages in the notification bar inside the header
+             * messages are faded out after duration milliseconds (default: 5000)
+             */
+            this.showNotification = function (message, duration) {
+                notification.html(message);
+                notification.fadeIn(function(){
+                    setTimeout(function(){
+                        notification.fadeOut();
+                    },duration || 5000);
+                })
+            };
+
+            /**
+             *
+             */
+            this.insertTweets = function (tweets, pre) {
+
+                tweets.forEach(function(tweet){
+                    // each note element needs to have three default classes for proper styling.
+                    var tweetCard = $('<div>').addClass('card flexChild hidden');
+
+                    tweetCard.append($('<img class="profileImg">').prop('src',tweet.user.profile_image_url));
+
+                    // create and append title
+                    tweetCard.append($('<span class="title">').html(tweet.user.name));
+
+                    // create and append content
+                    tweetCard.append($('<div class="content">').html(tweet.text));
+
+
+                    tweetCard.append($('<div class="date">').html(new Date(tweet.created_at)));
+
+                    // now append or prepend the newly created note
+                    if(pre){
+                        tweetsContainer.prepend(tweetCard);
+                    }
+                    else{
+                        tweetsContainer.append(tweetCard);
+                    }
+                    // since we gave it the class 'hidden' we still have to fade it in.
+                    // this is especially nice, when the user creates a new note.
+                    tweetCard.fadeIn();
+                });
+            };
+
+            /**
+             * @param noteElements jQuery Object pointing to all notes that we want to remove from the UI
+             */
+            this.removeTweets = function(noteElements){
+                noteElements.fadeOut(function(){
+                    $(this).remove();
+                });
+            }
+        }
+
+
+        /**
+         * the API Handler takes care of all AJAX requests.
+         * The API is almost "CRUD" (create retrieve update delete). only the update functionality is missing here.
+         */
+        function APIHandler() {
+            const api = {
+                baseURL: '/',
+                tweets: {
+                    "get": 'twitter/'
+                }
+            };
+            /**
+             * @param searchTerm String the search term to query the twitter API with
+             * @param callback function that will receive the response object directly (JSON containing 'status', 'message' and 'notes')
+             */
+            this.fetchTweets = function(searchTerm, callback) {
+                $.get(api.baseURL + api.tweets.get, {
+                    q: searchTerm
+                }, callback)
+            };
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        // our singletons
+        var apiHandler = new APIHandler();
+        var uiHandler = new UIHandler();
+
+
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //  E V E N T     H A N D L E R S
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        $('#searchForm').submit(function(e){
+            var input;
+            var searchTerm;
+            e.preventDefault();
+            input = $(this).find('input').first();
+            searchTerm = input.val();
+
+            apiHandler.fetchTweets(searchTerm, function (data) {
+                if (data.status == 'success' && data.tweets) {
+                    // there is data, let's insert it into the UI
+                    uiHandler.insertTweets(data.tweets,true);
+                }
+                else if (data.status == 'error') {
+                    // somehow this did not succeed, inform the user.
+                    uiHandler.showNotification(data.message)
+                }
+            });
+
+        })
+
+    });
+</script>
+</body>
+</html>

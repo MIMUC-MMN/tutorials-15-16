@@ -1,0 +1,20 @@
+<link rel="import"
+      href="../bower_components/polymer/polymer.html">
+<link rel="import"
+      href="../bower_components/iron-image/iron-image.html">
+
+<dom-module id="my-artist">
+    <template>
+        <iron-image src="{{img}}"></iron-image>
+        <span>{{name}}</span>
+    </template>
+    <script>
+        Polymer({
+            is : 'my-artist',
+            properties : {
+                name : String,
+                img : String
+            }
+        });
+    </script>
+</dom-module>

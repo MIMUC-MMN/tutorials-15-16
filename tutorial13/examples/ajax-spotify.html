@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax with Polymer</title>
+    <script
+            src="../bower_components/webcomponentsjs/webcomponents-lite.min.js">
+    </script>
+    <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+</head>
+<body>
+<template is="dom-bind">
+
+    <iron-ajax
+            auto
+            url="https://api.spotify.com/v1/search"
+            params='{"type":"artist", "q":"eagles"}'
+            last-response="{{spotifyResponse}}"></iron-ajax>
+
+    <template is="dom-repeat" items="{{spotifyResponse.artists.items}}">
+        <div>{{item.name}}</div>
+    </template>
+
+</template>
+</body>
+</html>

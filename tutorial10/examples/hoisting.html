@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hoisting</title>
+</head>
+<body>
+<div id="foo"></div>
+<script>
+    /**
+     * This example demonstrates two things.
+     * 1) The "content" variable is declared after it was used.
+     *    This is possible because JavaScript hoists declarations to the top of a scope.
+     * 2) Declaring and calling functions in one step.
+     *    The cool thing is: This function is only accessible once.
+     *    In other words, after this function was called, it cannot be called
+     *    from anywhere else in the script.
+     *    Of course, this does not make much sense in this example,
+     *    it's only meant to demonstrate that this is possible in JavaScript.
+     */
+    (function setContent(message){
+        content = message;
+
+        var div = document.getElementById('foo');
+        div.innerHTML = content;
+
+        var content;
+    })("A hoisting example");
+
+
+    /**
+     * Now, doing something like we do above is very bad style.
+     * It would be much better to declare all variables at the beginning of a scope.
+     * Some people also recommend to avoid using too many var statements that affect readability.
+     */
+    function properSetContent(message){
+        var content, div;
+        content = message;
+        div = document.getElementById('foo');
+        div.innerHTML = content;
+    }
+
+    properSetContent("This is example is better than the first one.");
+</script>
+</body>
+</html>

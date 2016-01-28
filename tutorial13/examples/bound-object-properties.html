@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Databinding to object properties</title>
+    <script
+            src="../bower_components/webcomponentsjs/webcomponents-lite.min.js">
+    </script>
+    <link rel="import" href="../bower_components/polymer/polymer.html">
+</head>
+<body>
+<template is="dom-bind" id="app">
+    <div>Position: <span>{{person.position}}</span></div>
+    <div>First: <span>{{person.first}}</span></div>
+    <div>Last: <span>{{person.last}}</span></div>
+</template>
+<script>
+    var app = document.querySelector('#app');
+    app.person = {
+        first : 'Jake',
+        last : 'Peralta',
+        position: 'Detective'
+    };
+</script>
+</body>
+</html>

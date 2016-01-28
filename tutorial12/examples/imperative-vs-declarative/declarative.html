@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Declarative Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+
+<body ng-app>
+
+<input placeholder="enter your name" ng-model="userName"/>
+<button ng-disabled="!userName">OK</button>
+<div>Your name: <span id="output">{{userName}}</span></div>
+
+</body>
+</html>
