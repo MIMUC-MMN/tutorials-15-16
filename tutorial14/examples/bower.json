@@ -1,0 +1,11 @@
+{
+  "name": "Repetition Examples",
+  "description": "",
+  "homepage": "",
+  "keywords": [],
+  "author": "Tobias Seitz",
+  "private": true,
+  "dependencies": {
+    "iron-ajax": "PolymerElements/iron-ajax#^1.0.7"
+  }
+}

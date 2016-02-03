@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX</title>
+    <style>
+        section{
+            float: left;
+            min-width: 200px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="bower_components/iron-ajax/iron-ajax.html">
+</head>
+<body>
+<h1>Artists AJAX Example</h1>
+<section>
+    <h2>Vanilla JS</h2>
+    <div id="vanilla-output"></div>
+    <script>
+        var req = new XMLHttpRequest();
+        req.onreadystatechange = function(){
+            var artists;
+            var vanillaOutput = document.querySelector('#vanilla-output');
+
+            if(req.readyState == 4 && req.status == 200){
+                artists = JSON.parse(req.responseText);
+                artists.forEach(function(artist){
+                    var heading = document.createElement('h3');
+                    var list = document.createElement('ul');
+                    heading.innerHTML = artist.name;
+                    artist.members.forEach(function(member){
+                        var item = document.createElement('li');
+                        item.innerHTML = member;
+                        list.appendChild(item);
+                    });
+                    vanillaOutput.appendChild(heading);
+                    vanillaOutput.appendChild(list);
+                });
+            }
+        };
+        req.open("GET",'artists.json',true);
+        req.send();
+    </script>
+</section>
+<section>
+    <h2>jQuery</h2>
+    <div id="jquery-output"></div>
+    <script>
+        $.get('artists.json',function(artists){
+            var jqueryOutput = $('#jquery-output');
+            $(artists).each(function(){
+                var heading = $('<h3>');
+                var list = $('<ul>');
+                heading.html(this.name);
+                $(this.members).each(function(){
+                    var item = $('<li>');
+                    item.html(this);
+                    list.append(item);
+                });
+                jqueryOutput.append(heading);
+                jqueryOutput.append(list);
+            });
+        })
+    </script>
+</section>
+<section>
+    <h2>Polymer</h2>
+    <template is="dom-bind">
+        <iron-ajax url="artists.json"
+                   auto
+                   last-response="{{artists}}">
+        </iron-ajax>
+        <template is="dom-repeat"
+                  items="[[artists]]">
+            <h3>[[item.name]]</h3>
+            <template is="dom-repeat"
+                      items="[[item.members]]">
+                <li>[[item]]</li>
+            </template>
+        </template>
+    </template>
+</section>
+</body>
+</html>
